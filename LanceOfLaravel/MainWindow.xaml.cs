@@ -8,10 +8,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Microsoft.Win32;
-using LaravelLauncher.Models;
-using LaravelLauncher.Services;
+using LanceOfLaravel.Models;
+using LanceOfLaravel.Services;
 
-namespace LaravelLauncher
+namespace LanceOfLaravel
 {
     public partial class MainWindow : Window
     {

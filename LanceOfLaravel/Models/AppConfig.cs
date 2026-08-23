@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace LaravelLauncher.Models
+namespace LanceOfLaravel.Models
 {
     public class AppConfig
     {

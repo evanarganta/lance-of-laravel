@@ -5,7 +5,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LaravelLauncher.Services
+namespace LanceOfLaravel.Services
 {
     public class EnvManager
     {

@@ -1,0 +1,70 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package Name="Lance of Laravel"
+           Manufacturer="Lance of Laravel"
+           Version="1.0.0.0"
+           UpgradeCode="a83b271d-534e-4f12-9c10-9b4e41fa8b12"
+           Scope="perMachine">
+    
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Lance of Laravel is already installed." />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- Application Icon -->
+    <Icon Id="AppIcon.ico" SourceFile="..\LanceOfLaravel\icon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon.ico" />
+    
+    <!-- User Choice UI for Destination Folder -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <ui:WixUI Id="WixUI_InstallDir" />
+
+    <Feature Id="MainFeature" Title="Lance of Laravel" Level="1">
+      <ComponentGroupRef Id="AppComponents" />
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="DesktopShortcut" />
+    </Feature>
+
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Id="INSTALLFOLDER" Name="Lance of Laravel" />
+    </StandardDirectory>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="ApplicationProgramsFolder" Name="Lance of Laravel" />
+    </StandardDirectory>
+
+    <StandardDirectory Id="DesktopFolder" />
+
+    <ComponentGroup Id="AppComponents" Directory="INSTALLFOLDER">
+      <Component Id="MainExecutable" Guid="c4781290-781d-44a9-8391-4560127819ab">
+        <File Id="LanceOfLaravel.exe" Source="..\LanceOfLaravel\bin\Release\net10.0-windows\win-x64\publish\LanceOfLaravel.exe" KeyPath="yes" />
+      </Component>
+      <Component Id="AppIconFile" Guid="f8d92a10-4821-4d1e-8762-119283746193">
+        <File Id="icon.ico" Source="..\LanceOfLaravel\icon.ico" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+
+    <!-- Start Menu Shortcut -->
+    <Component Id="ApplicationShortcut" Directory="ApplicationProgramsFolder" Guid="d79e51c8-2b02-48f1-8889-13847e92b512">
+      <Shortcut Id="ApplicationStartMenuShortcut"
+                Name="Lance of Laravel"
+                Description="Modern, terminal-free, one-click environment launcher for Laravel repositories"
+                Target="[INSTALLFOLDER]LanceOfLaravel.exe"
+                WorkingDirectory="INSTALLFOLDER"
+                Icon="AppIcon.ico" />
+      <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
+      <RegistryValue Root="HKCU" Key="Software\LanceOfLaravel" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+    </Component>
+
+    <!-- Desktop Shortcut -->
+    <Component Id="DesktopShortcut" Directory="DesktopFolder" Guid="e349281a-67b1-4c4f-9e23-28491871a932">
+      <Shortcut Id="ApplicationDesktopShortcut"
+                Name="Lance of Laravel"
+                Description="Modern, terminal-free, one-click environment launcher for Laravel repositories"
+                Target="[INSTALLFOLDER]LanceOfLaravel.exe"
+                WorkingDirectory="INSTALLFOLDER"
+                Icon="AppIcon.ico" />
+      <RegistryValue Root="HKCU" Key="Software\LanceOfLaravel" Name="desktopShortcut" Type="integer" Value="1" KeyPath="yes" />
+    </Component>
+
+  </Package>
+</Wix>

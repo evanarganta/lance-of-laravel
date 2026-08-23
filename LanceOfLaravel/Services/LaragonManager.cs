@@ -6,7 +6,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LaravelLauncher.Services
+namespace LanceOfLaravel.Services
 {
     public class LaragonManager
     {

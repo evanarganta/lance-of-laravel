@@ -1,15 +1,15 @@
 using System;
 using System.IO;
 using System.Text.Json;
-using LaravelLauncher.Models;
+using LanceOfLaravel.Models;
 
-namespace LaravelLauncher.Services
+namespace LanceOfLaravel.Services
 {
     public class ProjectHistoryService
     {
         private static readonly string AppDataFolder = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "LaravelLauncher"
+            "LanceOfLaravel"
         );
         private static readonly string ConfigFilePath = Path.Combine(AppDataFolder, "config.json");
 

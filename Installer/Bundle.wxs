@@ -1,0 +1,16 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:bal="http://wixtoolset.org/schemas/v4/wxs/bal">
+  <Bundle Name="Lance of Laravel Setup"
+          Manufacturer="Lance of Laravel"
+          Version="1.0.0.0"
+          UpgradeCode="9f8a32d1-41b2-4c23-871d-556192841b9a">
+
+    <BootstrapperApplication>
+      <bal:WixStandardBootstrapperApplication LicenseUrl="" Theme="hyperlinkLicense" />
+    </BootstrapperApplication>
+
+    <Chain>
+      <MsiPackage SourceFile="$(var.LanceOfLaravel.Installer.TargetDir)LanceOfLaravelSetup.msi" />
+    </Chain>
+  </Bundle>
+</Wix>

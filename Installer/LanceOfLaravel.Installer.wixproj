@@ -1,0 +1,25 @@
+<Project Sdk="WixToolset.Sdk/5.0.2">
+  <PropertyGroup>
+    <OutputType>Package</OutputType>
+    <OutputName>LanceOfLaravelSetup</OutputName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WixToolset.UI.wixext" Version="5.0.2" />
+    <PackageReference Include="WixToolset.Util.wixext" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Package.wxs" />
+    <None Include="Bundle.wxs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LanceOfLaravel\LanceOfLaravel.csproj" />
+  </ItemGroup>
+
+  <Target Name="CreateSetupExe" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetDir)LanceOfLaravelSetup.msi" DestinationFiles="$(TargetDir)LanceOfLaravelSetup.exe" />
+  </Target>
+</Project>

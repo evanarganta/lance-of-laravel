@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Text.Json;
-using LaravelLauncher.Models;
+using LanceOfLaravel.Models;
 
-namespace LaravelLauncher.Services
+namespace LanceOfLaravel.Services
 {
     public class LaravelValidator
     {

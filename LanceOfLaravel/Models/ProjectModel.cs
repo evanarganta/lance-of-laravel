@@ -1,7 +1,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace LaravelLauncher.Models
+namespace LanceOfLaravel.Models
 {
     public class ProjectModel
     {

@@ -1,42 +1,62 @@
-# Laralaunch
- 
+# Lance of Laravel
+
 ![.NET 10](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet)
 ![Platform](https://img.shields.io/badge/Platform-Windows-0078D4?logo=windows)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-Laralaunch handles setup and startup automatically. It checks your project, installs missing Composer and Node dependencies, creates the .env file, creates the MySQL database, starts Laragon services, runs the dev server, and opens the browser for you.
+Lance of Laravel handles setup and startup automatically. It validates your project, restores missing Composer and Node dependencies, creates the `.env` file, initializes MySQL databases, starts Laragon services, launches the dev server, and automatically opens your web browser.
 
 ## Preview
 
-<img width="1083" height="766" alt="Screenshot 2026-08-23 180727" src="https://github.com/user-attachments/assets/229f4b6a-3f14-4475-b97d-cc43881b5ab4" />
+<img width="1083" height="766" alt="Lance of Laravel Screenshot" src="https://github.com/user-attachments/assets/229f4b6a-3f14-4475-b97d-cc43881b5ab4" />
+
+## Project Layout
+
+```text
+Lance of Laravel
+│
+├── LanceOfLaravel/
+│   └── WPF Application (.NET 10)
+│
+└── Installer/
+    ├── LanceOfLaravel.Installer.wixproj
+    ├── Package.wxs
+    └── Bundle.wxs
+```
 
 ## Installation
 
-1. Go to [Releases](../../releases) and download the latest `Laralaunch.exe` single-file executable.
-2. Double-click `Laralaunch.exe` to open.
-3. Click **Select Laravel Project** to choose your Laravel application directory.
-4. Click **Run Project**.
+1. Go to [Releases](../../releases) and download `LanceOfLaravelSetup.exe` (or `LanceOfLaravel.exe`).
+2. Run `LanceOfLaravelSetup.exe`.
+3. Choose your desired installation location (defaults to `C:\Program Files\Lance of Laravel\`).
+4. Optionally check the option to create a **Lance of Laravel** desktop shortcut and start menu shortcut.
+5. Launch **Lance of Laravel**, click **Select Laravel Project**, and click **🚀 RUN PROJECT**.
 
 ## Building from Source
 
 ### Prerequisites
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 - Windows 10/11
+- WiX Toolset v5 (`dotnet tool install --global wix`)
 
 ### Build Steps
 
 ```powershell
 # Clone the repository
-git clone https://github.com/evanarganta/laralaunch
-cd laravel-launcher
+git clone https://github.com/evanarganta/lance-of-laravel
+cd lance-of-laravel
 
-# Run in Development Mode
-dotnet run
+# Run Application in Development Mode
+dotnet run --project LanceOfLaravel/LanceOfLaravel.csproj
 
-# Publish Standalone Single-File Executable
-dotnet publish -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true
+# Publish Standalone Executable
+dotnet publish LanceOfLaravel/LanceOfLaravel.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true
+
+# Build Windows Setup Installer (LanceOfLaravelSetup.exe & LanceOfLaravelSetup.msi)
+dotnet build Installer/LanceOfLaravel.Installer.wixproj -c Release
 ```
-The compiled single-file binary will be saved in `bin\Release\net10.0-windows\win-x64\publish\Laralaunch.exe`.
+
+The compiled setup installer will be output to `Installer\bin\Release\LanceOfLaravelSetup.exe`.
 
 ## License
 
