@@ -36,7 +36,7 @@
 
     <ComponentGroup Id="AppComponents" Directory="INSTALLFOLDER">
       <Component Id="MainExecutable" Guid="c4781290-781d-44a9-8391-4560127819ab">
-        <File Id="LanceOfLaravel.exe" Source="..\LanceOfLaravel\bin\Release\net10.0-windows\win-x64\publish\LanceOfLaravel.exe" KeyPath="yes" />
+        <File Id="LanceOfLaravel.exe" Source="$(var.LanceOfLaravel.TargetDir)LanceOfLaravel.exe" KeyPath="yes" />
       </Component>
       <Component Id="AppIconFile" Guid="f8d92a10-4821-4d1e-8762-119283746193">
         <File Id="icon.ico" Source="..\LanceOfLaravel\icon.ico" KeyPath="yes" />

@@ -10,7 +10,7 @@
     </BootstrapperApplication>
 
     <Chain>
-      <MsiPackage SourceFile="$(var.LanceOfLaravel.Installer.TargetDir)LanceOfLaravelSetup.msi" />
+      <MsiPackage SourceFile="$(var.LanceOfLaravel.Installer.TargetDir)LanceOfLaravelInstaller.msi" />
     </Chain>
   </Bundle>
 </Wix>
