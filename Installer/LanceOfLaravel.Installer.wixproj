@@ -2,6 +2,7 @@
   <PropertyGroup>
     <OutputType>Package</OutputType>
     <OutputName>LanceOfLaravelSetup</OutputName>
+    <Architectures>x64</Architectures>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
 

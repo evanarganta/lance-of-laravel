@@ -38,23 +38,17 @@
       <Component Id="MainExecutable" Guid="c4781290-781d-44a9-8391-4560127819ab">
         <File Id="LanceOfLaravel.exe" Source="$(var.LanceOfLaravel.TargetDir)LanceOfLaravel.exe" KeyPath="yes" />
       </Component>
+      <Component Id="MainDll" Guid="c4781290-781d-44a9-8391-4560127819ac">
+        <File Id="LanceOfLaravel.dll" Source="$(var.LanceOfLaravel.TargetDir)LanceOfLaravel.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="DepsJson" Guid="c4781290-781d-44a9-8391-4560127819ad">
+        <File Id="LanceOfLaravel.deps.json" Source="$(var.LanceOfLaravel.TargetDir)LanceOfLaravel.deps.json" KeyPath="yes" />
+      </Component>
+      <Component Id="RuntimeConfigJson" Guid="c4781290-781d-44a9-8391-4560127819ae">
+        <File Id="LanceOfLaravel.runtimeconfig.json" Source="$(var.LanceOfLaravel.TargetDir)LanceOfLaravel.runtimeconfig.json" KeyPath="yes" />
+      </Component>
       <Component Id="AppIconFile" Guid="f8d92a10-4821-4d1e-8762-119283746193">
         <File Id="icon.ico" Source="..\LanceOfLaravel\icon.ico" KeyPath="yes" />
-      </Component>
-      <Component Id="WpfgfxDll" Guid="b72d1094-1234-4567-890a-111111111111">
-        <File Id="wpfgfx_cor3.dll" Source="$(var.LanceOfLaravel.TargetDir)wpfgfx_cor3.dll" KeyPath="yes" />
-      </Component>
-      <Component Id="PresentationNativeDll" Guid="b72d1094-1234-4567-890a-222222222222">
-        <File Id="PresentationNative_cor3.dll" Source="$(var.LanceOfLaravel.TargetDir)PresentationNative_cor3.dll" KeyPath="yes" />
-      </Component>
-      <Component Id="D3DCompilerDll" Guid="b72d1094-1234-4567-890a-333333333333">
-        <File Id="D3DCompiler_47_cor3.dll" Source="$(var.LanceOfLaravel.TargetDir)D3DCompiler_47_cor3.dll" KeyPath="yes" />
-      </Component>
-      <Component Id="PenImcDll" Guid="b72d1094-1234-4567-890a-444444444444">
-        <File Id="PenImc_cor3.dll" Source="$(var.LanceOfLaravel.TargetDir)PenImc_cor3.dll" KeyPath="yes" />
-      </Component>
-      <Component Id="VcruntimeDll" Guid="b72d1094-1234-4567-890a-555555555555">
-        <File Id="vcruntime140_cor3.dll" Source="$(var.LanceOfLaravel.TargetDir)vcruntime140_cor3.dll" KeyPath="yes" />
       </Component>
     </ComponentGroup>
 
