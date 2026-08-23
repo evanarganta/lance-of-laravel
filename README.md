@@ -26,11 +26,11 @@ Lance of Laravel
 
 ## Installation
 
-1. Go to [Releases](../../releases) and download `LanceOfLaravelSetup.exe` (or `LanceOfLaravel.exe`).
-2. Run `LanceOfLaravelSetup.exe`.
-3. Choose your desired installation location (defaults to `C:\Program Files\Lance of Laravel\`).
+1. Go to [Releases](../../releases) and download `LanceOfLaravelSetup.msi`.
+2. Run `LanceOfLaravelSetup.msi`.
+3. Choose your desired installation location (defaults to `C:\Program Files (x86)\Lance of Laravel\`).
 4. Optionally check the option to create a **Lance of Laravel** desktop shortcut and start menu shortcut.
-5. Launch **Lance of Laravel**, click **Select Laravel Project**, and click **🚀 RUN PROJECT**.
+5. Launch **Lance of Laravel**, click **Select Laravel Project**, and click **Run Project**.
 
 ## Building from Source
 
