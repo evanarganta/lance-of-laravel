@@ -1,14 +1,10 @@
 # Laralaunch
-
-Modern, terminal-free, one-click environment launcher for Laravel repositories, using Laragon and built with C# and WPF (.NET 10).
  
 ![.NET 10](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet)
 ![Platform](https://img.shields.io/badge/Platform-Windows-0078D4?logo=windows)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-## Overview
-
-Laralaunch eliminates terminal commands, dependency setup hassles, and service startup checks. With a single click, it validates your project, restores missing Composer and Node dependencies, initializes environment files, auto-creates MySQL databases, starts Laragon services, launches your dev server, and automatically opens your web browser.
+Laralaunch handles setup and startup automatically. It checks your project, installs missing Composer and Node dependencies, creates the .env file, creates the MySQL database, starts Laragon services, runs the dev server, and opens the browser for you.
 
 ## Preview
 
