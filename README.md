@@ -8,7 +8,7 @@ Lance of Laravel handles setup and startup automatically. It validates your proj
 
 ## Preview
 
-<img width="1083" height="766" alt="Lance of Laravel Screenshot" src="https://github.com/user-attachments/assets/229f4b6a-3f14-4475-b97d-cc43881b5ab4" />
+<img width="100%" alt="gambar" src="https://github.com/user-attachments/assets/0e263c1a-30ca-47ec-99f2-c9da6ac09b4b" />
 
 ## Project Layout
 
