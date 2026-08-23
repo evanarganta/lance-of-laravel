@@ -10,6 +10,10 @@
     <AssemblyTitle>Lance of Laravel</AssemblyTitle>
     <Product>Lance of Laravel</Product>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
 
 </Project>
