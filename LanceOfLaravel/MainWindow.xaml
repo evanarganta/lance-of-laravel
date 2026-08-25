@@ -4,31 +4,73 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Lance of Laravel" Height="780" Width="1100"
+        Title="Lance of Laravel" Height="800" Width="1120"
         WindowStartupLocation="CenterScreen"
-        Background="#0F172A" Foreground="#F8FAFC"
-        FontFamily="Segoe UI, Inter, Arial">
+        Background="#0A0A0A" Foreground="#EEEEEE"
+        FontFamily="Segoe UI, Inter, -apple-system, Arial"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType">
     
     <Window.Resources>
-        <!-- Dark Theme Colors -->
-        <SolidColorBrush x:Key="BgBrush" Color="#0F172A"/>
-        <SolidColorBrush x:Key="SidebarBrush" Color="#182234"/>
-        <SolidColorBrush x:Key="CardBrush" Color="#1E293B"/>
-        <SolidColorBrush x:Key="CardHoverBrush" Color="#334155"/>
-        <SolidColorBrush x:Key="BorderBrush" Color="#334155"/>
-        <SolidColorBrush x:Key="PrimaryGreen" Color="#10B981"/>
-        <SolidColorBrush x:Key="PrimaryGreenHover" Color="#059669"/>
-        <SolidColorBrush x:Key="AccentIndigo" Color="#6366F1"/>
-        <SolidColorBrush x:Key="DangerRed" Color="#EF4444"/>
-        <SolidColorBrush x:Key="TextMuted" Color="#94A3B8"/>
+        <!-- Monochrome + Orange Accent Palette -->
+        <SolidColorBrush x:Key="BgBrush" Color="#0A0A0A"/>
+        <SolidColorBrush x:Key="SidebarBrush" Color="#111111"/>
+        <SolidColorBrush x:Key="CardBrush" Color="#161616"/>
+        <SolidColorBrush x:Key="CardHoverBrush" Color="#1F1F1F"/>
+        <SolidColorBrush x:Key="BorderBrush" Color="#262626"/>
+        <SolidColorBrush x:Key="InputBgBrush" Color="#0D0D0D"/>
         
-        <!-- Button Style -->
+        <!-- Orange Accent Tokens -->
+        <SolidColorBrush x:Key="OrangeAccent" Color="#F97316"/>
+        <SolidColorBrush x:Key="OrangeAccentHover" Color="#EA580C"/>
+        <SolidColorBrush x:Key="OrangeBgSubtle" Color="#271406"/>
+        <SolidColorBrush x:Key="OrangeBorderSubtle" Color="#9A3412"/>
+
+        <!-- Neutral Tokens -->
+        <SolidColorBrush x:Key="PrimaryWhite" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="PrimaryWhiteHover" Color="#E5E5E5"/>
+        <SolidColorBrush x:Key="SecondaryBtnBg" Color="#1A1A1A"/>
+        <SolidColorBrush x:Key="SecondaryBtnHover" Color="#262626"/>
+        <SolidColorBrush x:Key="SecondaryBtnBorder" Color="#333333"/>
+        <SolidColorBrush x:Key="TextMain" Color="#EEEEEE"/>
+        <SolidColorBrush x:Key="TextMuted" Color="#A0A0A0"/>
+        <SolidColorBrush x:Key="TextSubtle" Color="#666666"/>
+
+        <!-- Sharp Minimalist ScrollBar -->
+        <Style TargetType="ScrollBar">
+            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+            <Setter Property="Width" Value="5"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid x:Name="Bg" SnapsToDevicePixels="true">
+                            <Track x:Name="PART_Track" IsDirectionReversed="true">
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border Background="#333333" CornerRadius="0"/>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Primary Action Button (Orange Accent Sharp Pill) -->
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource PrimaryGreen}"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource OrangeAccent}"/>
+            <Setter Property="Foreground" Value="#000000"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="Padding" Value="20,12"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="24,10"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
@@ -39,11 +81,14 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="{StaticResource PrimaryGreenHover}"/>
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource OrangeAccentHover}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#C2410C"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="border" Property="Background" Value="#475569"/>
-                                <Setter Property="Foreground" Value="#94A3B8"/>
+                                <Setter TargetName="border" Property="Background" Value="#262626"/>
+                                <Setter Property="Foreground" Value="#666666"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -51,23 +96,32 @@
             </Setter>
         </Style>
 
+        <!-- Secondary Button (Sharp Dark Monochromatic) -->
         <Style x:Key="SecondaryButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource AccentIndigo}"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource SecondaryBtnBg}"/>
+            <Setter Property="Foreground" Value="#CCCCCC"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontSize" Value="12"/>
             <Setter Property="Padding" Value="14,8"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="{StaticResource SecondaryBtnBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="0" Padding="{TemplateBinding Padding}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0" Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#4F46E5"/>
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource SecondaryBtnHover}"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#555555"/>
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Background" Value="#111111"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#222222"/>
+                                <Setter Property="Foreground" Value="#555555"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -75,23 +129,156 @@
             </Setter>
         </Style>
 
+        <!-- Danger Button (Sharp Muted Dark Outline) -->
         <Style x:Key="DangerButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="{StaticResource DangerRed}"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Padding" Value="16,10"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="#1A1A1A"/>
+            <Setter Property="Foreground" Value="#A0A0A0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="14,8"/>
+            <Setter Property="BorderBrush" Value="#333333"/>
+            <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" CornerRadius="0" Padding="{TemplateBinding Padding}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="0" Padding="{TemplateBinding Padding}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#DC2626"/>
+                                <Setter TargetName="border" Property="Background" Value="#262626"/>
+                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Background" Value="#111111"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="#222222"/>
+                                <Setter Property="Foreground" Value="#555555"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Sharp CheckBox Template -->
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#CCCCCC"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border x:Name="box" Width="15" Height="15" CornerRadius="0" Background="#0D0D0D" BorderBrush="#333333" BorderThickness="1" Margin="0,0,10,0">
+                                <Path x:Name="checkMark" Data="M 3,7 L 6,10 L 12,3" Stroke="#000000" StrokeThickness="2" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="box" Property="Background" Value="#F97316"/>
+                                <Setter TargetName="box" Property="BorderBrush" Value="#EA580C"/>
+                                <Setter TargetName="checkMark" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="box" Property="BorderBrush" Value="#666666"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Sharp ComboBox Template -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="#0D0D0D"/>
+            <Setter Property="Foreground" Value="#EEEEEE"/>
+            <Setter Property="BorderBrush" Value="#262626"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton x:Name="ToggleButton" 
+                                          Focusable="false" 
+                                          IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          ClickMode="Press">
+                                <ToggleButton.Template>
+                                    <ControlTemplate TargetType="ToggleButton">
+                                        <Border x:Name="templateRoot" Background="#0D0D0D" BorderBrush="#262626" BorderThickness="1" CornerRadius="0" Padding="10,6">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="20"/>
+                                                </Grid.ColumnDefinitions>
+                                                <ContentPresenter Grid.Column="0" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                                <Path Grid.Column="1" Data="M 0 0 L 4 4 L 8 0" Stroke="#888888" StrokeThickness="1.5" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="templateRoot" Property="BorderBrush" Value="#444444"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="10,6,30,6" VerticalAlignment="Center"/>
+                            <Popup x:Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                                <Border x:Name="DropDownBorder" Background="#161616" BorderBrush="#262626" BorderThickness="1" CornerRadius="0" Margin="0,4,0,0" MinWidth="{TemplateBinding ActualWidth}">
+                                    <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#EEEEEE"/>
+            <Setter Property="Padding" Value="10,8"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="0" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#222222"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#262626"/>
+                                <Setter Property="Foreground" Value="#F97316"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Sharp ListBoxItem -->
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="0" SnapsToDevicePixels="true">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#1F1F1F"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -102,13 +289,13 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="320"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- LEFT SIDEBAR: RECENT PROJECTS -->
         <Border Grid.Column="0" Background="{StaticResource SidebarBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,1,0">
-            <Grid Margin="16">
+            <Grid Margin="18,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -116,19 +303,9 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- App Title -->
-                <StackPanel Grid.Row="0" Margin="0,0,0,16">
-                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <StackPanel>
-                            <TextBlock Text="Lance of Laravel" FontSize="18" FontWeight="Bold" Foreground="White"/>
-                            <TextBlock Text="Laravel Repository Automated Launcher" FontSize="11" Foreground="{StaticResource TextMuted}"/>
-                        </StackPanel>
-                    </StackPanel>
-                </StackPanel>
-
                 <!-- Recent Projects Header -->
-                <Grid Grid.Row="1" Margin="0,8,0,8">
-                    <TextBlock Text="RECENT PROJECTS" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextMuted}"/>
+                <Grid Grid.Row="1" Margin="0,0,0,12">
+                    <TextBlock Text="Recent Repositories" FontSize="10" FontWeight="Bold" FontFamily="Consolas, SF Mono" Foreground="{StaticResource TextSubtle}"/>
                 </Grid>
 
                 <!-- List of Recent Projects -->
@@ -138,25 +315,31 @@
                          SelectionChanged="LstRecentProjects_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border Background="{StaticResource CardBrush}" CornerRadius="0" Padding="10" Margin="0,4,0,4" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Cursor="Hand">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                                        <TextBlock Text="▶ " Foreground="{StaticResource PrimaryGreen}" FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" Foreground="White" FontSize="13"/>
+                            <Border x:Name="itemBorder" Background="#161616" BorderBrush="#262626" BorderThickness="1" CornerRadius="0" Padding="12,10" Cursor="Hand">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                            <TextBlock Text="● " Foreground="#F97316" FontSize="9" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                                            <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" Foreground="#EEEEEE" FontSize="13"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding FolderPath}" Foreground="#888888" FontFamily="Consolas, SF Mono, Courier New" FontSize="10" TextTrimming="CharacterEllipsis"/>
                                     </StackPanel>
-                                    <TextBlock Text="{Binding FolderPath}" Foreground="{StaticResource TextMuted}" FontSize="10" TextTrimming="CharacterEllipsis" Margin="0,2,0,4"/>
-                                    <Border HorizontalAlignment="Left" Background="#0F172A" CornerRadius="0" Padding="6,2">
-                                        <TextBlock Text="{Binding ModeBadge}" Foreground="{StaticResource PrimaryGreen}" FontSize="9" FontWeight="SemiBold"/>
+                                    <Border Grid.Column="1" VerticalAlignment="Center" Background="#1A1A1A" BorderBrush="#333333" BorderThickness="1" CornerRadius="0" Padding="6,2" Margin="8,0,0,0">
+                                        <TextBlock Text="{Binding ModeBadge}" Foreground="#F97316" FontFamily="Consolas, SF Mono" FontSize="9" FontWeight="Bold"/>
                                     </Border>
-                                </StackPanel>
+                                </Grid>
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
 
-                <!-- Bottom Quick Info -->
+                <!-- Bottom Quick Settings -->
                 <StackPanel Grid.Row="3" Margin="0,16,0,0">
-                    <Button Content="⚙️ Settings &amp; Laragon Path" Click="BtnSettings_Click" Style="{StaticResource SecondaryButtonStyle}" HorizontalAlignment="Stretch"/>
+                    <Button Content="⚙ Set Laragon Path" Click="BtnSettings_Click" Style="{StaticResource SecondaryButtonStyle}" HorizontalAlignment="Stretch"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -164,15 +347,15 @@
         <!-- RIGHT MAIN WORKSPACE -->
         <Grid Grid.Column="1" Margin="24">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/> <!-- Selected Project Card -->
-                <RowDefinition Height="Auto"/> <!-- Options & Toggles Card -->
-                <RowDefinition Height="Auto"/> <!-- Action Buttons -->
-                <RowDefinition Height="*"/>    <!-- Log Output Terminal -->
-                <RowDefinition Height="Auto"/> <!-- Status Bar -->
+                <RowDefinition Height="Auto"/> <!-- 1. Selected Project Card -->
+                <RowDefinition Height="Auto"/> <!-- 2. Options & Services Card -->
+                <RowDefinition Height="Auto"/> <!-- 3. Action Buttons Bar -->
+                <RowDefinition Height="*"/>    <!-- 4. Log Output Terminal -->
+                <RowDefinition Height="Auto"/> <!-- 5. Status Bar & Footer -->
             </Grid.RowDefinitions>
 
             <!-- 1. SELECTED PROJECT CARD -->
-            <Border Grid.Row="0" Background="{StaticResource CardBrush}" CornerRadius="0" Padding="16" Margin="0,0,0,16" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+            <Border Grid.Row="0" Background="{StaticResource CardBrush}" CornerRadius="0" Padding="18,16" Margin="0,0,0,16" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -180,28 +363,31 @@
                     </Grid.ColumnDefinitions>
                     
                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                        <TextBlock Text="SELECTED PROJECT" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextMuted}" Margin="0,0,0,4"/>
-                        <TextBlock x:Name="TxtSelectedPath" Text="No project selected..." FontSize="14" FontFamily="Consolas, Courier New" Foreground="#F8FAFC" TextWrapping="Wrap" Margin="0,0,0,6"/>
+                        <Border Background="{StaticResource InputBgBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" CornerRadius="0" Padding="12,8" Margin="0,0,0,10">
+                            <TextBlock x:Name="TxtSelectedPath" Text="Select a repository..." FontSize="12" FontFamily="Consolas, SF Mono, Courier New" Foreground="#EEEEEE" TextWrapping="Wrap"/>
+                        </Border>
+
+                        <!-- Validation Status Badge -->
                         <StackPanel x:Name="PnlValidationStatus" Orientation="Horizontal">
-                            <Border x:Name="BdrValidationBadge" Background="#334155" CornerRadius="0" Padding="8,3">
-                                <TextBlock x:Name="TxtValidationStatus" Text="Please select a Laravel directory" FontSize="11" FontWeight="Bold" Foreground="White"/>
+                            <Border x:Name="BdrValidationBadge" Background="#271406" BorderBrush="#9A3412" BorderThickness="1" CornerRadius="0" Padding="8,2">
+                                <TextBlock x:Name="TxtValidationStatus" Text="Please select a Laravel directory" FontSize="11" FontWeight="SemiBold" Foreground="#F97316" FontFamily="Consolas, SF Mono"/>
                             </Border>
                         </StackPanel>
                     </StackPanel>
 
-                    <Button Grid.Column="1" Content="📁 Select Laravel Project" Click="BtnBrowseProject_Click" Style="{StaticResource SecondaryButtonStyle}" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                    <Button Grid.Column="1" Content="📁 Select Folder" Click="BtnBrowseProject_Click" Style="{StaticResource SecondaryButtonStyle}" VerticalAlignment="Center" Margin="16,0,0,0"/>
                 </Grid>
             </Border>
 
             <!-- 2. OPTIONS & SERVICES CARD -->
-            <Border Grid.Row="1" Background="{StaticResource CardBrush}" CornerRadius="0" Padding="16" Margin="0,0,0,16" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+            <Border Grid.Row="1" Background="{StaticResource CardBrush}" CornerRadius="0" Padding="18,16" Margin="0,0,0,16" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="SERVICES &amp; LAUNCH OPTIONS" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextMuted}" Margin="0,0,0,12"/>
+                    <TextBlock Grid.Row="0" Text="Services &amp; Launch Options" FontSize="10" FontWeight="Bold" FontFamily="Consolas, SF Mono" Foreground="{StaticResource TextSubtle}" Margin="0,0,0,14"/>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -209,19 +395,21 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Toggles -->
+                        <!-- Service Toggles -->
                         <StackPanel Grid.Column="0">
-                            <CheckBox x:Name="ChkStartLaragon" Content="☑ Start Laragon" IsChecked="True" Foreground="White" Margin="0,0,0,8"/>
-                            <CheckBox x:Name="ChkStartApache" Content="☑ Apache Service" IsChecked="True" Foreground="White" Margin="0,0,0,8"/>
-                            <CheckBox x:Name="ChkStartMySQL" Content="☑ MySQL Service" IsChecked="True" Foreground="White" Margin="0,0,0,8"/>
+                            <CheckBox x:Name="ChkStartLaragon" Content="Start Laragon" IsChecked="True" Margin="0,0,0,10"/>
+                            <CheckBox x:Name="ChkStartApache" Content="Apache Service" IsChecked="True" Margin="0,0,0,10"/>
+                            <CheckBox x:Name="ChkStartMySQL" Content="MySQL Service" IsChecked="True" Margin="0,0,0,10"/>
                         </StackPanel>
 
+                        <!-- Options & Execution Mode -->
                         <StackPanel Grid.Column="1">
-                            <CheckBox x:Name="ChkAutoMigrate" Content="☑ Auto Run Migrations (php artisan migrate)" IsChecked="False" Foreground="White" Margin="0,0,0,8"/>
-                            <CheckBox x:Name="ChkForceSetup" Content="⚡ Force Setup (Reinstall Composer &amp; NPM)" IsChecked="False" Foreground="#F59E0B" FontWeight="SemiBold" Margin="0,0,0,8"/>
-                            <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
-                                <TextBlock Text="Execution Mode: " Foreground="{StaticResource TextMuted}" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="CmbExecutionMode" Width="200" SelectedIndex="0" Margin="8,0,0,0">
+                            <CheckBox x:Name="ChkAutoMigrate" Content="Auto Run Migrations (php artisan migrate)" IsChecked="False" Margin="0,0,0,10"/>
+                            <CheckBox x:Name="ChkForceSetup" Content="Force Setup (Reinstall Composer &amp; NPM)" IsChecked="False" Margin="0,0,0,12"/>
+                            
+                            <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                                <TextBlock Text="Execution Mode: " Foreground="{StaticResource TextMuted}" FontSize="12" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="CmbExecutionMode" Width="210" SelectedIndex="0" Margin="8,0,0,0">
                                     <ComboBoxItem Content="Auto (Detect Laragon .test)"/>
                                     <ComboBoxItem Content="Mode A: Localhost (:8000)"/>
                                     <ComboBoxItem Content="Mode B: Laragon (.test)"/>
@@ -232,42 +420,52 @@
                 </Grid>
             </Border>
 
-            <!-- 3. ACTION BUTTONS -->
+            <!-- 3. ACTION BUTTONS BAR -->
             <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,16">
-                <Button x:Name="BtnRunProject" Content="🚀 RUN PROJECT" Click="BtnRunProject_Click" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,12,0"/>
-                <Button x:Name="BtnStopServer" Content="⏹ STOP SERVER" Click="BtnStopServer_Click" Style="{StaticResource DangerButtonStyle}" IsEnabled="False" Margin="0,0,12,0"/>
-                <Button x:Name="BtnForceSetup" Content="⚡ Run Setup Only" Click="BtnForceSetup_Click" Style="{StaticResource SecondaryButtonStyle}"/>
+                <Button x:Name="BtnRunProject" Content="Run Project" Click="BtnRunProject_Click" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,10,0"/>
+                <Button x:Name="BtnStopServer" Content="Stop Server" Click="BtnStopServer_Click" Style="{StaticResource DangerButtonStyle}" IsEnabled="False" Margin="0,0,10,0"/>
+                <Button x:Name="BtnForceSetup" Content="Run Setup Only" Click="BtnForceSetup_Click" Style="{StaticResource SecondaryButtonStyle}"/>
             </StackPanel>
 
             <!-- 4. LIVE CONSOLE / LOG TERMINAL -->
-            <Border Grid.Row="3" Background="#020617" CornerRadius="0" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="12">
+            <Border Grid.Row="3" Background="{StaticResource BgBrush}" CornerRadius="0" BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Padding="14">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" Margin="0,0,0,8">
-                        <TextBlock Text="💻 EXECUTION LOGS &amp; SYSTEM OUTPUT" FontSize="11" FontWeight="Bold" Foreground="{StaticResource TextMuted}" VerticalAlignment="Center"/>
+                    <Grid Grid.Row="0" Margin="0,0,0,10">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="● " Foreground="#F97316" FontSize="9" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                            <TextBlock Text="terminal" FontSize="11" FontWeight="Bold" FontFamily="Consolas, SF Mono" Foreground="{StaticResource TextMuted}"/>
+                        </StackPanel>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Content="Clear" Click="BtnClearLog_Click" Background="Transparent" Foreground="{StaticResource TextMuted}" BorderThickness="0" Cursor="Hand" Margin="0,0,12,0"/>
-                            <Button Content="Copy" Click="BtnCopyLog_Click" Background="Transparent" Foreground="{StaticResource TextMuted}" BorderThickness="0" Cursor="Hand"/>
+                            <Button Content="Clear" Click="BtnClearLog_Click" Background="Transparent" Foreground="{StaticResource TextSubtle}" BorderThickness="0" Cursor="Hand" FontSize="11" Margin="0,0,14,0"/>
+                            <Button Content="Copy" Click="BtnCopyLog_Click" Background="Transparent" Foreground="{StaticResource TextSubtle}" BorderThickness="0" Cursor="Hand" FontSize="11"/>
                         </StackPanel>
                     </Grid>
 
                     <TextBox x:Name="TxtLogs" Grid.Row="1" 
-                             Background="Transparent" Foreground="#38BDF8" BorderThickness="0"
-                             FontFamily="Consolas, Courier New" FontSize="12"
+                             Background="Transparent" Foreground="#A0A0A0" BorderThickness="0"
+                             FontFamily="Consolas, SF Mono, Courier New" FontSize="11"
                              IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
                 </Grid>
             </Border>
 
-            <!-- 5. STATUS BAR -->
-            <Grid Grid.Row="4" Margin="0,12,0,0">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <TextBlock Text="Status: " Foreground="{StaticResource TextMuted}" FontWeight="Bold"/>
-                    <TextBlock x:Name="TxtStatus" Text="Ready" Foreground="{StaticResource PrimaryGreen}" FontWeight="Bold"/>
+            <!-- 5. STATUS BAR & FOOTER -->
+            <Grid Grid.Row="4" Margin="0,14,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="Status: " Foreground="{StaticResource TextSubtle}" FontSize="11" FontFamily="Consolas, SF Mono"/>
+                    <TextBlock x:Name="TxtStatus" Text="Ready" Foreground="#F97316" FontWeight="Bold" FontSize="11" FontFamily="Consolas, SF Mono"/>
                 </StackPanel>
+
+                <TextBlock Grid.Column="1" Text="https://github.com/evanarganta/lance-of-laravel" Foreground="#444444" FontSize="11" FontFamily="Consolas, SF Mono" VerticalAlignment="Center"/>
             </Grid>
 
         </Grid>

@@ -78,14 +78,18 @@ namespace LanceOfLaravel
 
             if (_currentProject.IsValidLaravel)
             {
-                BdrValidationBadge.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#10B981"));
-                TxtValidationStatus.Text = $"✅ Valid Laravel Project ({_currentProject.DisplayName})";
+                BdrValidationBadge.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#271406"));
+                BdrValidationBadge.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9A3412"));
+                TxtValidationStatus.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F97316"));
+                TxtValidationStatus.Text = $"Valid Laravel Project ({_currentProject.DisplayName})";
                 Log($"[OK] Selected valid Laravel project: {_currentProject.FolderPath}");
             }
             else
             {
-                BdrValidationBadge.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EF4444"));
-                TxtValidationStatus.Text = "❌ This doesn't appear to be a Laravel project.";
+                BdrValidationBadge.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1A1A1A"));
+                BdrValidationBadge.BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#333333"));
+                TxtValidationStatus.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A0A0A0"));
+                TxtValidationStatus.Text = "Not a valid Laravel project directory";
                 Log($"[ERROR] Selected directory is not a valid Laravel project: {path}");
             }
 
@@ -167,7 +171,7 @@ namespace LanceOfLaravel
                     Log("❌ This doesn't appear to be a Laravel project.");
                     Log("   Missing one or more required files: artisan, composer.json, package.json.");
                     MessageBox.Show("❌ This doesn't appear to be a Laravel project.\nMissing artisan, composer.json, or package.json.", "Validation Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                    UpdateStatus("Error: Not a Laravel Project", "#EF4444");
+                    UpdateStatus("Error: Not a Laravel Project", "#A0A0A0");
                     SetUiStateRunning(false);
                     return;
                 }
@@ -187,7 +191,7 @@ namespace LanceOfLaravel
                 if (!depsOk)
                 {
                     Log("❌ Dependency restoration failed.");
-                    UpdateStatus("Error: Dependencies Failed", "#EF4444");
+                    UpdateStatus("Error: Dependencies Failed", "#A0A0A0");
                     SetUiStateRunning(false);
                     return;
                 }
@@ -206,7 +210,7 @@ namespace LanceOfLaravel
                 if (!envOk)
                 {
                     Log("❌ Environment initialization failed.");
-                    UpdateStatus("Error: .env Failed", "#EF4444");
+                    UpdateStatus("Error: .env Failed", "#A0A0A0");
                     SetUiStateRunning(false);
                     return;
                 }
@@ -251,23 +255,23 @@ namespace LanceOfLaravel
 
                 if (serverStarted)
                 {
-                    UpdateStatus($"🚀 Running at {targetUrl}", "#10B981");
+                    UpdateStatus($"Running at {targetUrl}", "#F97316");
                     BtnStopServer.IsEnabled = true;
                 }
                 else
                 {
-                    UpdateStatus("Warning: Server started with issues", "#F59E0B");
+                    UpdateStatus("Warning: Server started with issues", "#A0A0A0");
                 }
             }
             catch (OperationCanceledException)
             {
                 Log("\n⏹ Launch operation cancelled by user.");
-                UpdateStatus("Cancelled", "#94A3B8");
+                UpdateStatus("Cancelled", "#666666");
             }
             catch (Exception ex)
             {
                 Log($"\n❌ Exception during launch: {ex.Message}");
-                UpdateStatus("Error: Launch Failed", "#EF4444");
+                UpdateStatus("Error: Launch Failed", "#A0A0A0");
             }
             finally
             {
@@ -293,12 +297,12 @@ namespace LanceOfLaravel
                 await _dependencyManager.EnsureDependenciesAsync(_currentProject.FolderPath, forceSetup: true, Log, _cts.Token);
                 await _envManager.EnsureEnvAsync(_currentProject.FolderPath, runMigrations: false, Log, _cts.Token);
                 Log("✅ Force setup completed successfully!");
-                UpdateStatus("Setup Complete", "#10B981");
+                UpdateStatus("Setup Complete", "#F97316");
             }
             catch (Exception ex)
             {
                 Log($"❌ Setup error: {ex.Message}");
-                UpdateStatus("Setup Error", "#EF4444");
+                UpdateStatus("Setup Error", "#A0A0A0");
             }
             finally
             {
@@ -311,7 +315,7 @@ namespace LanceOfLaravel
             _cts?.Cancel();
             _serverRunner.StopAllServers(Log);
             BtnStopServer.IsEnabled = false;
-            UpdateStatus("Stopped", "#94A3B8");
+            UpdateStatus("Stopped", "#666666");
             Log("⏹ All dev servers stopped.");
         }
 
@@ -321,7 +325,7 @@ namespace LanceOfLaravel
             BtnForceSetup.IsEnabled = !isRunning;
         }
 
-        private void UpdateStatus(string message, string hexColor = "#10B981")
+        private void UpdateStatus(string message, string hexColor = "#F97316")
         {
             Dispatcher.Invoke(() =>
             {
