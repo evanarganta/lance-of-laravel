@@ -33,14 +33,14 @@ Lance of Laravel
 4. Optionally check the option to create a **Lance of Laravel** desktop shortcut and start menu shortcut.
 5. Launch **Lance of Laravel**, click **Select Laravel Project**, and click **Run Project**.
 
-## Building from Source
+## Building
 
 ### Prerequisites
 - [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 - Windows 10/11
 - WiX Toolset v5 (`dotnet tool install --global wix`)
 
-### Build Steps
+### Steps
 
 ```powershell
 # Clone the repository
@@ -58,7 +58,3 @@ dotnet build Installer/LanceOfLaravel.Installer.wixproj -c Release
 ```
 
 The compiled setup installer will be output to `Installer\bin\Release\LanceOfLaravelSetup.exe`.
-
-## License
-
-Distributed under the MIT License. See `LICENSE` for details.
